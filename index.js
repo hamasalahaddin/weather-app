@@ -2,6 +2,10 @@ const weatherForm = document.querySelector(".weatherForm");
 const cityInput = document.querySelector(".cityInput");
 const card = document.querySelector(".card");
 const apiKey = "014400aea0d34a066bf427b946a7109f";
+const celsiusBtn = document.getElementById("celsiusBtn");
+const fahrenheitBtn = document.getElementById("fahrenheitBtn");
+const tempToggleDiv = document.querySelector(".tempToggle");
+let currentTempC = null;
 
 weatherForm.addEventListener("submit", async event =>{
 
@@ -37,6 +41,8 @@ function displayWeatherInfo(data){
     const {name: city, 
             main:{temp, humidity}, 
             weather: [{description, id}]} = data;
+    
+    currentTempC = Math.floor(temp - 273.15);
 
     card.textContent = "";
     card.style.display = "flex";
@@ -48,7 +54,7 @@ function displayWeatherInfo(data){
     const weatherEmoji = document.createElement("p");
 
     cityDisplay.textContent = city;
-    tempDisplay.textContent = `${Math.floor(temp - 273.15)}°C`;
+    tempDisplay.textContent = `${currentTempC}°C`;
     humidityDisplay.textContent = `Humidity: ${humidity}%`;
     descDisplay.textContent = description;
     weatherEmoji.textContent = getWeatherEmoji(id);
@@ -64,6 +70,23 @@ function displayWeatherInfo(data){
     card.appendChild(humidityDisplay);
     card.appendChild(descDisplay);
     card.appendChild(weatherEmoji);
+
+    tempToggleDiv.style.display = "flex";
+
+    celsiusBtn.classList.add("active");
+    fahrenheitBtn.classList.remove("active");
+
+    celsiusBtn.onclick = () =>{
+        tempDisplay.textContent = `${currentTempC}°C`;
+        celsiusBtn.classList.add("active");
+        fahrenheitBtn.classList.remove("active");
+    };
+    fahrenheitBtn.onclick = () =>{
+        const tempF = Math.floor(currentTempC * 9/5 + 32);
+        tempDisplay.textContent = `${tempF}°F`;
+        fahrenheitBtn.classList.add("active");
+        celsiusBtn.classList.remove("active");
+    };
 }
 function getWeatherEmoji(weatherId){
 
