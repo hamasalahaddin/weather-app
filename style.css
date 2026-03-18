@@ -1,3 +1,6 @@
+*{
+    box-sizing: border-box;
+}
 body{
     font-family: Arial, sans-serif;
     background-color: hsl(0, 0%, 5%);
@@ -8,6 +11,9 @@ body{
 }
 .weatherForm{
     margin: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 .cityInput{
     background-color: hsl(0, 0%, 15%);
@@ -17,10 +23,15 @@ body{
     font-weight: bold;
     border: 2px solid hsla(0, 0%, 80%, 0.3);
     border-radius: 10px;
-    margin: 10px;
-    width: 200px;
+    margin: 0;
+    width: 100%;
+    max-width: 250px;
+    flex: 1;
 }
 button[type="submit"]{
+    width: 100%;
+    max-width: 200px;
+    flex-shrink: 0;
     padding: 10px 20px;
     font-weight: bold;
     font-size: 1.5rem;
@@ -42,6 +53,8 @@ button[type="submit"]:active{
     border-radius: 10px;
     box-shadow: 2px 2px 5px hsla(0, 0%, 100%, 0.5);   
     min-width: 250px;
+    width: 90%;
+    max-width: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -97,4 +110,31 @@ p{
 }
 .tempToggle button.active {
     background-color: hsl(240, 100%, 50%);
+}
+@media (max-width: 500px) {
+    .weatherForm {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cityInput,
+    button[type="submit"] {
+        width: 100%;
+        max-width: 250px;
+    }
+    .cityDisplay {
+        font-size: 2rem;
+    }
+
+    .tempDisplay {
+        font-size: 1.5rem;
+    }
+
+    .weatherEmoji {
+        font-size: 3rem;
+    }
+
+    .card {
+        padding: 20px;
+    }
 }
