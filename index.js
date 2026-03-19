@@ -5,6 +5,7 @@ const apiKey = "YOUR_API_KEY";
 const celsiusBtn = document.getElementById("celsiusBtn");
 const fahrenheitBtn = document.getElementById("fahrenheitBtn");
 const tempToggleDiv = document.querySelector(".tempToggle");
+const loading = document.querySelector(".loading");
 let currentTempC = null;
 
 weatherForm.addEventListener("submit", async event =>{
@@ -16,9 +17,14 @@ weatherForm.addEventListener("submit", async event =>{
     if(city){
 
         try{
+            card.style.display = "none";
+            loading.style.display = "block";
+
             const weatherData = await getWeatherData(city);
+            loading.style.display = "none";
             displayWeatherInfo(weatherData);
         }catch(error){
+            loading.style.display = "none";
             console.error(error);
             displayError(error);
         }
