@@ -116,24 +116,19 @@ p{
         flex-direction: column;
         align-items: center;
     }
-
-    .cityInput,
-    button[type="submit"] {
+    .cityInput, button[type="submit"] {
         width: 100%;
         max-width: 250px;
     }
     .cityDisplay {
         font-size: 2rem;
     }
-
     .tempDisplay {
         font-size: 1.5rem;
     }
-
     .weatherEmoji {
         font-size: 3rem;
     }
-
     .card {
         padding: 20px;
     }
@@ -147,9 +142,22 @@ p{
     animation: spin 1s linear infinite;
     margin: 20px;
 }
-
 @keyframes spin {
     to {
         transform: rotate(360deg);
     }
+}
+body.light {
+    background-color: hsl(0, 0%, 95%);
+}
+body.light .cityInput {
+    background-color: white;
+    color: black;
+}
+body.light .card {
+    background: linear-gradient(180deg, hsl(210, 100%, 90%), hsl(40, 100%, 90%));
+}
+body.light .tempToggle button {
+    background-color: hsl(240, 100%, 80%);
+    color: black;
 }

@@ -6,6 +6,7 @@ const celsiusBtn = document.getElementById("celsiusBtn");
 const fahrenheitBtn = document.getElementById("fahrenheitBtn");
 const tempToggleDiv = document.querySelector(".tempToggle");
 const loading = document.querySelector(".loading");
+const themeToggle = document.querySelector(".themeToggle");
 let currentTempC = null;
 
 weatherForm.addEventListener("submit", async event =>{
@@ -125,3 +126,12 @@ function displayError(message){
     card.style.display = "flex";
     card.appendChild(errorDisplay);
 }
+themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("light");
+
+    if(document.body.classList.contains("light")){
+        themeToggle.textContent = "Light";
+    } else {
+        themeToggle.textContent = "Dark";
+    }
+});
